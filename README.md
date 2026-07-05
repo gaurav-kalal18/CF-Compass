@@ -25,31 +25,29 @@ CF Compass helps competitive programmers understand their strengths, identify we
 - 🌙 Clean responsive dark UI
 
 ---
-
 ## 📸 Screenshots
 
-### Overview Dashboard
+### 🏠 Overview Dashboard
 
-![Overview](screenshots/overview.png)
-
----
-
-### Topic Insights
-
-![Insights](screenshots/insights.png)
+![Overview](docs/screenshots/overview.png)
 
 ---
 
-### Practice Recommendations
+### 📊 Insights Dashboard
 
-![Practice](screenshots/practice.png)
+![Insights](docs/screenshots/insights.png)
 
 ---
 
-### Contest History
+### 🎯 Practice Dashboard
 
-![Contests](screenshots/contests.png)
+![Practice](docs/screenshots/practice.png)
 
+---
+
+### 🏆 Contest Dashboard
+
+![Contests](docs/screenshots/contests.png)
 ---
 
 ## 🛠️ Tech Stack
