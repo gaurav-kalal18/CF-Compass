@@ -1,17 +1,41 @@
-import "./App.css";
-import SearchBar from "./components/SearchBar";
+import { Routes, Route } from "react-router-dom";
+
+import Navbar from "./components/common/Navbar";
+
+import Overview from "./pages/Overview";
+import Insights from "./pages/Insights";
+import Practice from "./pages/Practice";
+import Contests from "./pages/Contests";
 
 function App() {
   return (
-    <div>
-      <h1>CF Compass</h1>
+    <>
+      <Navbar />
 
-      <p>
-        Your Competitive Programming Analytics Platform
-      </p>
+      <Routes>
 
-      <SearchBar />
-    </div>
+        <Route
+          path="/"
+          element={<Overview />}
+        />
+
+        <Route
+          path="/insights"
+          element={<Insights />}
+        />
+
+        <Route
+          path="/practice"
+          element={<Practice />}
+        />
+
+        <Route
+          path="/contests"
+          element={<Contests />}
+        />
+
+      </Routes>
+    </>
   );
 }
 

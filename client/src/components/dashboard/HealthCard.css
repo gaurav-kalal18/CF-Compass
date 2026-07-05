@@ -1,0 +1,199 @@
+.health-card{
+
+    background:#22242b;
+
+    border-radius:20px;
+
+    padding:35px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    text-align:center;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.25);
+
+    transition:.3s ease;
+
+    min-height:100%;
+
+}
+
+.health-card:hover{
+
+    transform:translateY(-5px);
+
+}
+
+.health-circle{
+
+    width:150px;
+
+    height:150px;
+
+    border-radius:50%;
+
+    border:8px solid #4CAF50;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    margin-bottom:18px;
+
+    box-shadow:0 0 25px rgba(76,175,80,.35);
+
+    flex-shrink:0;
+
+}
+
+.health-number{
+
+    color:white;
+
+    font-size:3.2rem;
+
+    font-weight:700;
+
+}
+
+.health-title{
+
+    color:white;
+
+    margin:0;
+
+    font-size:2rem;
+
+}
+
+.health-grade{
+
+    margin-top:10px;
+
+    color:#50fa7b;
+
+    font-size:1.5rem;
+
+    font-weight:600;
+
+}
+
+.health-stars{
+
+    margin:14px 0;
+
+    color:#FFC107;
+
+    font-size:1.5rem;
+
+    letter-spacing:4px;
+
+}
+
+.health-summary{
+
+    max-width:340px;
+
+    color:#b8c1d1;
+
+    line-height:1.5;
+
+    font-size:.98rem;
+
+    margin-top:8px;
+
+}
+
+/* ---------- Tablet ---------- */
+
+@media(max-width:900px){
+
+    .health-card{
+
+        padding:30px 24px;
+
+    }
+
+}
+
+/* ---------- Mobile ---------- */
+
+@media(max-width:600px){
+
+    .health-circle{
+
+        width:120px;
+
+        height:120px;
+
+        border-width:6px;
+
+    }
+
+    .health-number{
+
+        font-size:2.5rem;
+
+    }
+
+    .health-title{
+
+        font-size:1.7rem;
+
+    }
+
+    .health-grade{
+
+        font-size:1.3rem;
+
+    }
+
+    .health-stars{
+
+        font-size:1.2rem;
+
+        letter-spacing:2px;
+
+    }
+
+}
+
+/* ---------- Small Phones ---------- */
+
+@media(max-width:400px){
+
+    .health-card{
+
+        padding:24px 18px;
+
+    }
+
+    .health-circle{
+
+        width:100px;
+
+        height:100px;
+
+    }
+
+    .health-number{
+
+        font-size:2rem;
+
+    }
+
+    .health-summary{
+
+        font-size:.95rem;
+
+    }
+
+}

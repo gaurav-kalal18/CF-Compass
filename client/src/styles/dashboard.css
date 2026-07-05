@@ -1,0 +1,125 @@
+/* ================= Dashboard ================= */
+
+.dashboard{
+
+    max-width:1400px;
+
+    margin:auto;
+
+    padding:35px;
+
+}
+
+/* ================= Hero ================= */
+
+.hero-section{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,minmax(0,1fr));
+
+    gap:30px;
+
+    margin-bottom:50px;
+
+}
+
+.hero-section > *{
+
+    height:100%;
+
+}
+
+/* ================= Empty State ================= */
+
+.empty-state{
+
+    min-height:75vh;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    text-align:center;
+
+    padding:40px;
+
+}
+
+.empty-icon{
+
+    font-size:90px;
+
+    margin-bottom:20px;
+
+}
+
+.empty-state h1{
+
+    color:white;
+
+    font-size:3rem;
+
+    margin-bottom:15px;
+
+}
+
+.empty-state p{
+
+    color:#8ab4f8;
+
+    font-size:1.4rem;
+
+    margin-bottom:18px;
+
+}
+
+.empty-state span{
+
+    max-width:700px;
+
+    color:#b8c1d1;
+
+    line-height:1.8;
+
+    font-size:1.05rem;
+
+}
+
+/* ================= Responsive ================= */
+
+@media(max-width:1000px){
+
+    .hero-section{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+
+@media(max-width:700px){
+
+    .dashboard{
+
+        padding:18px;
+
+    }
+
+    .empty-state h1{
+
+        font-size:2.2rem;
+
+    }
+
+    .empty-state p{
+
+        font-size:1.1rem;
+
+    }
+
+}

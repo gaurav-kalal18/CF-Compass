@@ -1,0 +1,44 @@
+.stats-card {
+  background: #22242b;
+  border-radius: 18px;
+  padding: 28px 20px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.22);
+
+  transition: all 0.3s ease;
+
+  cursor: default;
+
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.stats-card:hover {
+  transform: translateY(-6px);
+
+  box-shadow: 0 16px 35px rgba(0, 0, 0, 0.35);
+}
+
+.stats-title {
+  font-size: 1rem;
+
+  color: #9ca3af;
+
+  font-weight: 600;
+
+  margin-bottom: 18px;
+}
+
+.stats-value {
+  font-size: 2.6rem;
+
+  font-weight: 700;
+
+  color: white;
+}

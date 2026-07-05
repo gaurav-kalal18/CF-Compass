@@ -1,0 +1,69 @@
+.chart-card {
+
+    background: #22242b;
+
+    border-radius: 20px;
+
+    padding: 30px;
+
+    margin-top: 35px;
+
+    box-shadow: 0 10px 25px rgba(0, 0, 0, .25);
+
+    transition: all .3s ease;
+
+}
+
+.chart-card:hover {
+
+    transform: translateY(-4px);
+
+}
+
+.chart-title {
+
+    color: white;
+
+    font-size: 1.8rem;
+
+    font-weight: 600;
+
+    margin-bottom: 25px;
+
+}
+
+.recharts-cartesian-grid line {
+
+    stroke: rgba(255,255,255,.08);
+
+}
+
+.recharts-tooltip-wrapper {
+
+    outline: none;
+
+}
+
+.recharts-default-tooltip {
+
+    background: #1b1d24 !important;
+
+    border: none !important;
+
+    border-radius: 10px !important;
+
+}
+
+.recharts-tooltip-label {
+
+    color: white !important;
+
+}
+
+.recharts-text {
+
+    fill: #b8c1d1;
+
+    font-size: 13px;
+
+}

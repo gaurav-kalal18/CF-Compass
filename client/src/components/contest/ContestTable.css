@@ -1,0 +1,115 @@
+.contest-card{
+
+    background:#22242b;
+
+    border-radius:20px;
+
+    padding:30px;
+
+    margin-top:25px;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.25);
+
+    overflow-x:auto;
+
+}
+
+.contest-table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+    min-width:760px;
+
+}
+
+.contest-table thead{
+
+    background:#2d3038;
+
+}
+
+.contest-table th{
+
+    padding:16px;
+
+    color:#8ab4f8;
+
+    text-align:left;
+
+    font-size:.95rem;
+
+    font-weight:600;
+
+}
+
+.contest-table td{
+
+    padding:16px;
+
+    border-bottom:1px solid rgba(255,255,255,.06);
+
+    color:#e6e6e6;
+
+}
+
+.contest-table tbody tr{
+
+    transition:.25s;
+
+}
+
+.contest-table tbody tr:hover{
+
+    background:rgba(255,255,255,.05);
+
+}
+
+.contest-name{
+
+    font-weight:500;
+
+    max-width:430px;
+
+    line-height:1.5;
+
+}
+
+/* Rating Change */
+
+.positive{
+
+    color:#4CAF50 !important;
+
+    font-weight:700;
+
+}
+
+.negative{
+
+    color:#F44336 !important;
+
+    font-weight:700;
+
+}
+
+.neutral{
+
+    color:#b8c1d1 !important;
+
+    font-weight:700;
+
+}
+
+/* Responsive */
+
+@media(max-width:900px){
+
+    .contest-card{
+
+        padding:20px;
+
+    }
+
+}
