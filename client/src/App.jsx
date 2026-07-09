@@ -1,6 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 
 import Navbar from "./components/common/Navbar";
+import Footer from "./components/common/Footer";
 
 import Overview from "./pages/Overview";
 import Insights from "./pages/Insights";
@@ -35,6 +36,9 @@ function App() {
         />
 
       </Routes>
+
+      <Footer />
+
     </>
   );
 }

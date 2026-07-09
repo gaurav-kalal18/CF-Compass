@@ -10,15 +10,14 @@ import StrengthAreas from "../components/dashboard/StrengthAreas";
 
 import RatingChart from "../components/charts/RatingChart";
 import ContestTable from "../components/contest/ContestTable";
-import LoadingSpinner from "../components/common/LoadingSpinner";
+
+import SearchBar from "../components/common/SearchBar";
+import { ChartNoAxesCombined } from "lucide-react";
+
 function Overview() {
 
-    const { profile, analytics, handle, loading } = useSearch();
-    if (loading) {
+    const { profile, analytics, handle } = useSearch();
 
-        return <LoadingSpinner />;
-
-    }
     return (
 
         <div className="dashboard">
@@ -31,12 +30,14 @@ function Overview() {
 
                         <ProfileCard profile={profile} />
 
-                        <HealthCard health={analytics.healthScore} />
+                        <HealthCard
+                            health={analytics.healthScore}
+                            weakTopic={analytics.weakTopics?.[0]?.topic}
+                        />
 
                     </div>
 
                     <QuickStats profile={profile} />
-
                     <GrowthAreas
                         focusAreas={analytics.weakTopics}
                     />
@@ -60,21 +61,40 @@ function Overview() {
                 <div className="empty-state">
 
                     <div className="empty-icon">
-                        🧭
+                        <ChartNoAxesCombined
+                            size={56}
+                            strokeWidth={2.2}
+                        />
                     </div>
 
                     <h1>
-                        Welcome to CF Compass
+                        Analyze Your Codeforces Journey
                     </h1>
 
                     <p>
-                        Your Personal Codeforces Analytics Dashboard
+                        Discover your strengths, identify weak topics, and improve with personalized Codeforces analytics.
                     </p>
 
-                    <span>
-                        Search a Codeforces handle from the navigation bar
-                        to unlock personalized insights, contest analytics,
-                        practice recommendations and performance tracking.
+                    <SearchBar />
+
+                    <div className="feature-chips">
+
+                        <div className="feature-chip">
+                            📈 Rating Analytics
+                        </div>
+
+                        <div className="feature-chip">
+                            🎯 Weak Topic Detection
+                        </div>
+
+                        <div className="feature-chip">
+                            📃 Contest History
+                        </div>
+
+                    </div>
+
+                    <span className="empty-footer-text">
+                        • No sign-up required  • Analyze any public Codeforces handle
                     </span>
 
                 </div>

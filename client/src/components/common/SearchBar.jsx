@@ -19,6 +19,7 @@ function SearchBar() {
         type="text"
         placeholder="Enter Codeforces Handle"
         value={inputHandle}
+        disabled={loading}
         onChange={(e) => setInputHandle(e.target.value)}
         onKeyDown={(e) => {
           if (e.key === "Enter") {
@@ -31,7 +32,7 @@ function SearchBar() {
         onClick={handleSubmit}
         disabled={loading}
       >
-        {loading ? "Loading..." : "Analyze"}
+       {loading ? "Analyzing..." : "Analyze"}
       </button>
     </div>
   );

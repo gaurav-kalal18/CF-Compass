@@ -2,8 +2,6 @@ import { NavLink } from "react-router-dom";
 
 import "./Navbar.css";
 
-import SearchBar from "./SearchBar";
-
 import { useSearch } from "../../context/SearchContext";
 import { getRankColor } from "../../utils/rankColors";
 
@@ -35,46 +33,56 @@ function Navbar() {
 
       <div className="nav-right">
 
-        {
+        {profile ? (
 
-          profile && (
+          <div className="mini-profile">
 
-            <div className="mini-profile">
+            <div className="mini-handle">
 
-              <div>
-
-                <strong>
-
-                  {profile.handle}
-
-                </strong>
-
-              </div>
-
-              <div
-                className="mini-rank"
-                style={{
-                  color:getRankColor(profile.rank)
-                }}
-              >
-
-                {profile.rank}
-
-              </div>
-
-              <div className="mini-rating">
-
-                {profile.rating}
-
-              </div>
+              👤 {profile.handle}
 
             </div>
 
-          )
+            <div className="mini-info">
 
-        }
+              <span
+                className="mini-rank"
+                style={{
+                  color: getRankColor(profile.rank),
+                }}
+              >
+                {profile.rank.charAt(0).toUpperCase() + profile.rank.slice(1)}
+              </span>
 
-        <SearchBar/>
+              <span className="info-separator">
+                •
+              </span>
+
+              <span className="mini-rating">
+
+                Rating {profile.rating}
+
+              </span>
+
+            </div>
+
+          </div>
+
+        ) : (
+
+          <div className="ready-status">
+
+            <span className="status-dot"></span>
+
+            <span>
+
+              Online
+
+            </span>
+
+          </div>
+
+        )}
 
       </div>
 

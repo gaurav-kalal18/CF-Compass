@@ -2,11 +2,13 @@ import "./ProfileCard.css";
 import { getRankColor } from "../../utils/rankColors";
 
 function ProfileCard({ profile }) {
+
   if (!profile) return null;
 
   const rankColor = getRankColor(profile.rank);
 
   return (
+
     <div className="profile-card">
 
       <img
@@ -15,19 +17,28 @@ function ProfileCard({ profile }) {
         className="profile-avatar"
       />
 
-      <h2>{profile.name || profile.handle}</h2>
+      <h2>
+        {profile.name || profile.handle}
+      </h2>
 
       <p className="handle">
         @{profile.handle}
       </p>
 
       {profile.rank && (
+
         <span
           className="rank-badge"
           style={{ backgroundColor: rankColor }}
         >
-          {profile.rank.charAt(0).toUpperCase() + profile.rank.slice(1)}
+          {
+            profile.rank
+              .split(" ")
+              .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+              .join(" ")
+          }
         </span>
+
       )}
 
       <div className="rating-row">
@@ -38,11 +49,15 @@ function ProfileCard({ profile }) {
 
             <div className="rating-dot current"></div>
 
-            <h3>{profile.rating}</h3>
+            <h3>
+              {profile.rating}
+            </h3>
 
           </div>
 
-          <span>Current Rating</span>
+          <span>
+            Current Rating
+          </span>
 
         </div>
 
@@ -52,30 +67,46 @@ function ProfileCard({ profile }) {
 
             <div className="rating-dot peak"></div>
 
-            <h3>{profile.maxRating}</h3>
+            <h3>
+              {profile.maxRating}
+            </h3>
 
           </div>
 
-          <span>Max Rating</span>
+          <span>
+            Max Rating
+          </span>
 
         </div>
 
       </div>
 
-      {profile.country && (
-        <p className="info">
-          🌍 {profile.country}
-        </p>
-      )}
+      <hr className="profile-divider" />
 
-      {profile.organization && (
-        <p className="info">
-          🏫 {profile.organization}
-        </p>
-      )}
+      <div className="profile-details">
+
+        {profile.country && (
+
+          <p className="info">
+            🌍 {profile.country}
+          </p>
+
+        )}
+
+        {profile.organization && (
+
+          <p className="info">
+            🏫 {profile.organization}
+          </p>
+
+        )}
+
+      </div>
 
     </div>
+
   );
+
 }
 
 export default ProfileCard;

@@ -19,7 +19,14 @@ function QuickStats({ profile }) {
 
       <StatsCard
         title="Current Rank"
-        value={profile.rank}
+        value={
+          profile.rank
+            ? profile.rank
+              .split(" ")
+              .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+              .join(" ")
+            : "-"
+        }
       />
 
       <StatsCard

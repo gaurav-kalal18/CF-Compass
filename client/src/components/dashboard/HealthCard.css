@@ -1,124 +1,148 @@
-.health-card{
+.health-card {
 
-    background:#22242b;
+    background: #22242b;
 
-    border-radius:20px;
+    border-radius: 20px;
 
-    padding:35px;
+    padding: 35px;
 
-    display:flex;
+    display: flex;
 
-    flex-direction:column;
+    flex-direction: column;
 
-    align-items:center;
+    align-items: center;
 
-    justify-content:space-between;
+    justify-content: flex-start;
+    gap: 14px;
 
-    text-align:center;
+    text-align: center;
 
-    box-shadow:0 10px 25px rgba(0,0,0,.25);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, .25);
 
-    transition:.3s ease;
+    transition: .3s ease;
 
-    min-height:100%;
-
-}
-
-.health-card:hover{
-
-    transform:translateY(-5px);
 
 }
 
-.health-circle{
+.health-card:hover {
 
-    width:150px;
-
-    height:150px;
-
-    border-radius:50%;
-
-    border:8px solid #4CAF50;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    margin-bottom:18px;
-
-    box-shadow:0 0 25px rgba(76,175,80,.35);
-
-    flex-shrink:0;
+    transform: translateY(-5px);
 
 }
 
-.health-number{
+.health-circle {
 
-    color:white;
+    width: 150px;
 
-    font-size:3.2rem;
+    height: 150px;
 
-    font-weight:700;
+    border-radius: 50%;
 
-}
+    border: 8px solid #4CAF50;
 
-.health-title{
+    display: flex;
 
-    color:white;
+    align-items: center;
 
-    margin:0;
+    justify-content: center;
 
-    font-size:2rem;
+    margin-bottom: 18px;
 
-}
+    box-shadow: 0 0 25px rgba(76, 175, 80, .35);
 
-.health-grade{
-
-    margin-top:10px;
-
-    color:#50fa7b;
-
-    font-size:1.5rem;
-
-    font-weight:600;
+    flex-shrink: 0;
 
 }
 
-.health-stars{
+.health-number {
 
-    margin:14px 0;
+    color: white;
 
-    color:#FFC107;
+    font-size: 3.2rem;
 
-    font-size:1.5rem;
-
-    letter-spacing:4px;
+    font-weight: 700;
 
 }
 
-.health-summary{
+.health-title {
 
-    max-width:340px;
+    color: white;
 
-    color:#b8c1d1;
+    margin: 0;
 
-    line-height:1.5;
+    font-size: 2rem;
 
-    font-size:.98rem;
+}
 
-    margin-top:8px;
+.health-label {
+
+    margin: 10px 0 12px;
+
+    color: #50fa7b;
+
+    font-size: 1.3rem;
+
+    font-weight: 700;
+
+}
+
+.health-metrics {
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 8px;
+
+    flex-wrap: wrap;
+
+    color: #b8c1d1;
+
+    font-size: .88rem;
+
+    margin-bottom: 12px;
+
+}
+
+.health-focus {
+
+    color: #b8c1d1;
+
+    font-size: .95rem;
+
+    margin-bottom: 12px;
+
+}
+
+.health-focus strong {
+
+    color: #ffb84d;
+
+}
+
+.health-summary {
+
+    max-width: 340px;
+
+    color: #b8c1d1;
+
+    line-height: 1.45;
+
+    font-size: .95rem;
+
+    margin-top: 0;
 
 }
 
 /* ---------- Tablet ---------- */
 
-@media(max-width:900px){
+@media(max-width:900px) {
 
-    .health-card{
+    .health-card {
 
-        padding:30px 24px;
+        padding: 30px 24px;
 
     }
 
@@ -126,41 +150,41 @@
 
 /* ---------- Mobile ---------- */
 
-@media(max-width:600px){
+@media(max-width:600px) {
 
-    .health-circle{
+    .health-circle {
 
-        width:120px;
+        width: 120px;
 
-        height:120px;
+        height: 120px;
 
-        border-width:6px;
-
-    }
-
-    .health-number{
-
-        font-size:2.5rem;
+        border-width: 6px;
 
     }
 
-    .health-title{
+    .health-number {
 
-        font-size:1.7rem;
-
-    }
-
-    .health-grade{
-
-        font-size:1.3rem;
+        font-size: 2.5rem;
 
     }
 
-    .health-stars{
+    .health-title {
 
-        font-size:1.2rem;
+        font-size: 1.7rem;
 
-        letter-spacing:2px;
+    }
+
+    .health-grade {
+
+        font-size: 1.3rem;
+
+    }
+
+    .health-stars {
+
+        font-size: 1.2rem;
+
+        letter-spacing: 2px;
 
     }
 
@@ -168,31 +192,31 @@
 
 /* ---------- Small Phones ---------- */
 
-@media(max-width:400px){
+@media(max-width:400px) {
 
-    .health-card{
+    .health-card {
 
-        padding:24px 18px;
-
-    }
-
-    .health-circle{
-
-        width:100px;
-
-        height:100px;
+        padding: 24px 18px;
 
     }
 
-    .health-number{
+    .health-circle {
 
-        font-size:2rem;
+        width: 100px;
+
+        height: 100px;
 
     }
 
-    .health-summary{
+    .health-number {
 
-        font-size:.95rem;
+        font-size: 2rem;
+
+    }
+
+    .health-summary {
+
+        font-size: .95rem;
 
     }
 
