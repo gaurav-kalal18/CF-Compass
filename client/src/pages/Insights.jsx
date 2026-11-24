@@ -1,7 +1,7 @@
 import { useSearch } from "../context/useSearch";
 import DifficultyHeatmap from "../components/insights/DifficultyHeatmap";
 import TopicAnalytics from "../components/insights/TopicAnalytics";
-import PageState from "../components/common/PageState";
+import AnalyticsState from "../components/common/AnalyticsState";
 
 export default function Insights() {
   const { analytics } = useSearch();
@@ -10,7 +10,7 @@ export default function Insights() {
     <div className="page-flow secondary-page">
       <h1 className="page-title">Practice insights</h1>
       {!analytics ? (
-        <PageState description="Analyze a Codeforces handle to see results by topic and difficulty." />
+        <AnalyticsState description="Analyze a Codeforces handle to see results by topic and difficulty." />
       ) : (
         <>
           <section className="content-section">

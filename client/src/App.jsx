@@ -17,7 +17,7 @@ export default function App() {
       <Navbar />
       <main id="main" tabIndex={-1} className="shell main-content">
         <div className="search-feedback" role="status">
-          {loading && "Fetching Codeforces profile and analytics…"}
+          {loading && "Fetching Codeforces profile…"}
         </div>
         {searchError && <p className="inline-error" role="alert">{searchError}</p>}
         <Routes>

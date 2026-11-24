@@ -2,6 +2,7 @@ import { lazy, Suspense } from "react";
 import { Link } from "react-router-dom";
 import { useSearch } from "../context/useSearch";
 import SearchBar from "../components/common/SearchBar";
+import AnalyticsState from "../components/common/AnalyticsState";
 import ProfileCard from "../components/dashboard/ProfileCard";
 import HealthCard from "../components/dashboard/HealthCard";
 import TopicHighlights from "../components/dashboard/TopicHighlights";
@@ -45,11 +46,13 @@ export default function Overview() {
           <HistoryState history={history} retry={retryHistory} />
         </section>
       )}
-      <div className="overview-summary">
-        <TopicHighlights title="Practice next" topics={analytics.weakTopics} />
-        <TopicHighlights title="Strong topics" topics={analytics.strongTopics} strength />
-        <HealthCard health={analytics.healthScore} hasTopics={Boolean(analytics.topicAnalytics?.length)} />
-      </div>
+      {analytics ? (
+        <div className="overview-summary">
+          <TopicHighlights title="Practice next" topics={analytics.weakTopics} />
+          <TopicHighlights title="Strong topics" topics={analytics.strongTopics} strength />
+          <HealthCard health={analytics.healthScore} hasTopics={Boolean(analytics.topicAnalytics?.length)} />
+        </div>
+      ) : <AnalyticsState />}
       {contests.length > 0 && (
         <section className="content-section">
           <div className="section-heading">
