@@ -1,112 +1,33 @@
-import "./ProfileCard.css";
-import { getRankColor } from "../../utils/rankColors";
+import { formatNumber } from "../../utils/contestFormat";
 
-function ProfileCard({ profile }) {
-
-  if (!profile) return null;
-
-  const rankColor = getRankColor(profile.rank);
+export default function ProfileCard({ profile }) {
+  const details = [profile.organization, profile.country].filter(Boolean).join(" · ");
+  const items = [
+    ["Current rating", profile.rating == null ? "Unrated" : formatNumber(profile.rating)],
+    ["Peak rating", profile.maxRating == null ? "—" : formatNumber(profile.maxRating)],
+    ["Contribution", profile.contribution == null ? "—" : formatNumber(profile.contribution)],
+  ];
 
   return (
-
-    <div className="profile-card">
-
-      <img
-        src={profile.avatar}
-        alt={profile.handle}
-        className="profile-avatar"
-      />
-
-      <h2>
-        {profile.name || profile.handle}
-      </h2>
-
-      <p className="handle">
-        @{profile.handle}
-      </p>
-
-      {profile.rank && (
-
-        <span
-          className="rank-badge"
-          style={{ backgroundColor: rankColor }}
-        >
-          {
-            profile.rank
-              .split(" ")
-              .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-              .join(" ")
-          }
-        </span>
-
-      )}
-
-      <div className="rating-row">
-
-        <div className="rating-item">
-
-          <div className="rating-left">
-
-            <div className="rating-dot current"></div>
-
-            <h3>
-              {profile.rating}
-            </h3>
-
-          </div>
-
-          <span>
-            Current Rating
-          </span>
-
+    <div className="profile-strip">
+      <div className="profile-identity">
+        {profile.avatar && <img className="profile-photo" src={profile.avatar} alt="" />}
+        <div>
+          <a className="profile-handle" href={"https://codeforces.com/profile/" + encodeURIComponent(profile.handle)}>
+            @{profile.handle}
+          </a>
+          {profile.name && <span className="profile-name">{profile.name}</span>}
+          <p className="profile-meta">{[profile.rank ?? "Unrated", details].filter(Boolean).join(" · ")}</p>
         </div>
-
-        <div className="rating-item">
-
-          <div className="rating-left">
-
-            <div className="rating-dot peak"></div>
-
-            <h3>
-              {profile.maxRating}
-            </h3>
-
+      </div>
+      <dl className="profile-metrics">
+        {items.map(([label, value]) => (
+          <div key={label}>
+            <dt>{label}</dt>
+            <dd>{value}</dd>
           </div>
-
-          <span>
-            Max Rating
-          </span>
-
-        </div>
-
-      </div>
-
-      <hr className="profile-divider" />
-
-      <div className="profile-details">
-
-        {profile.country && (
-
-          <p className="info">
-            🌍 {profile.country}
-          </p>
-
-        )}
-
-        {profile.organization && (
-
-          <p className="info">
-            🏫 {profile.organization}
-          </p>
-
-        )}
-
-      </div>
-
+        ))}
+      </dl>
     </div>
-
   );
-
 }
-
-export default ProfileCard;

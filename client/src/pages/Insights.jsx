@@ -1,88 +1,28 @@
-import "../styles/dashboard.css";
-
-import { useSearch } from "../context/SearchContext";
-
-import TopicAnalytics from "../components/insights/TopicAnalytics";
+import { useSearch } from "../context/useSearch";
 import DifficultyHeatmap from "../components/insights/DifficultyHeatmap";
-import LoadingSpinner from "../components/common/LoadingSpinner";
+import TopicAnalytics from "../components/insights/TopicAnalytics";
+import AnalyticsState from "../components/common/AnalyticsState";
 
+export default function Insights() {
+  const { analytics } = useSearch();
 
-
-
-function Insights() {
-
-    const { analytics, loading } = useSearch();
-    if (loading) {
-
-        return <LoadingSpinner />;
-
-    }
-    return (
-
-        <div className="dashboard">
-
-            {analytics ? (
-
-                <>
-
-                    <section className="page-section">
-
-                        <h2 className="section-title">
-                            🎯 Difficulty Distribution
-                        </h2>
-
-                        <DifficultyHeatmap
-                            difficulty={analytics.difficultyAnalytics}
-                        />
-
-                    </section>
-
-                    <section className="page-section">
-
-                        <h2 className="section-title">
-                            📊 Topic Analytics
-                        </h2>
-
-                        <TopicAnalytics
-                            topics={analytics.topicAnalytics}
-                        />
-
-                    </section>
-
-                </>
-
-            ) : (
-
-                <div className="empty-state">
-
-                    <div className="empty-icon">
-                        📊
-                    </div>
-
-                    <h1>
-                        Insights Dashboard
-                    </h1>
-
-                    <p>
-                        Discover your strongest and weakest topics.
-                    </p>
-
-                    <span>
-
-                        Search a Codeforces handle to unlock detailed
-                        topic-wise performance analysis and difficulty
-                        distribution.
-
-                    </span>
-
-                </div>
-
-            )}
-
-        </div>
-
-    );
-
+  return (
+    <div className="page-flow secondary-page">
+      <h1 className="page-title">Practice insights</h1>
+      {!analytics ? (
+        <AnalyticsState description="Analyze a Codeforces handle to see results by topic and difficulty." />
+      ) : (
+        <>
+          <section className="content-section">
+            <div className="section-heading"><h2>Topic performance</h2></div>
+            <TopicAnalytics topics={analytics.topicAnalytics} />
+          </section>
+          <section className="content-section">
+            <div className="section-heading"><h2>Problems solved by difficulty</h2></div>
+            <DifficultyHeatmap difficulty={analytics.difficultyAnalytics} />
+          </section>
+        </>
+      )}
+    </div>
+  );
 }
-
-export default Insights;
