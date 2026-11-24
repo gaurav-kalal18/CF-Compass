@@ -1,92 +1,21 @@
-import "../styles/dashboard.css";
-
-import { useSearch } from "../context/SearchContext";
-
+import { useSearch } from "../context/useSearch";
 import PracticeRecommendations from "../components/practice/PracticeRecommendations";
-import WeeklyGoal from "../components/practice/WeeklyGoal";
-import LoadingSpinner from "../components/common/LoadingSpinner";
-function Practice() {
+import PageState from "../components/common/PageState";
 
-    const { analytics, loading } = useSearch();
-    if (loading) {
+export default function Practice() {
+  const { analytics } = useSearch();
 
-        return <LoadingSpinner />;
-
-    }
-    return (
-
-        <div className="dashboard">
-
-            {analytics ? (
-
-                <>
-
-                    <section className="page-section">
-
-                        <h2 className="section-title">
-
-                            🎯 Personalized Practice Plan
-
-                        </h2>
-
-                        <PracticeRecommendations
-                            recommendations={analytics.recommendations}
-                        />
-
-                    </section>
-
-                    <section className="page-section">
-
-                        <h2 className="section-title">
-
-                            📅 Weekly Goal
-
-                        </h2>
-
-                        <WeeklyGoal />
-
-                    </section>
-
-                </>
-
-            ) : (
-
-                <div className="empty-state">
-
-                    <div className="empty-icon">
-
-                        🎯
-
-                    </div>
-
-                    <h1>
-
-                        Practice Dashboard
-
-                    </h1>
-
-                    <p>
-
-                        Personalized recommendations tailored to your weaknesses.
-
-                    </p>
-
-                    <span>
-
-                        Search a Codeforces handle to receive topic-wise
-                        recommendations, suggested difficulty ranges,
-                        and a focused weekly practice roadmap.
-
-                    </span>
-
-                </div>
-
-            )}
-
-        </div>
-
-    );
-
+  return (
+    <div className="page-flow secondary-page">
+      <h1 className="page-title">Practice plan</h1>
+      {!analytics ? (
+        <PageState description="Analyze a Codeforces handle to get topic and difficulty recommendations." />
+      ) : (
+        <section className="content-section">
+          <div className="section-heading"><h2>Recommended topics</h2></div>
+          <PracticeRecommendations recommendations={analytics.recommendations} />
+        </section>
+      )}
+    </div>
+  );
 }
-
-export default Practice;

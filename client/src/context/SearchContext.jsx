@@ -1,88 +1,82 @@
-import { createContext, useContext, useState } from "react";
+import { useEffect, useState } from "react";
 import API from "../services/api";
-
-const SearchContext = createContext();
+import { SearchContext } from "./useSearch";
 
 export function SearchProvider({ children }) {
+  const [analysis, setAnalysis] = useState(null);
+  const [searching, setSearching] = useState("");
+  const [error, setError] = useState("");
+  const [historyResult, setHistoryResult] = useState(null);
+  const [historyAttempt, setHistoryAttempt] = useState(0);
 
-  const [handle, setHandle] = useState("");
+  useEffect(() => {
+    if (!analysis) return;
 
-  const [profile, setProfile] = useState(null);
+    const controller = new AbortController();
+    const path = "/profile/rating/" + encodeURIComponent(analysis.profile.handle);
 
-  const [analytics, setAnalytics] = useState(null);
+    API.get(path, { signal: controller.signal, timeout: 20000 })
+      .then(({ data }) => {
+        const rows = Array.isArray(data) ? data : data?.result;
+        if (!Array.isArray(rows)) throw new Error("Unexpected rating history format");
 
-  const [loading, setLoading] = useState(false);
+        const contests = rows.slice().sort(
+          (first, second) => first.ratingUpdateTimeSeconds - second.ratingUpdateTimeSeconds
+        );
 
-  async function searchHandle(username) {
+        if (!controller.signal.aborted) {
+          setHistoryResult({ analysis, attempt: historyAttempt, contests, failed: false });
+        }
+      })
+      .catch(() => {
+        if (!controller.signal.aborted) {
+          setHistoryResult({ analysis, attempt: historyAttempt, contests: [], failed: true });
+        }
+      });
 
-    if (!username.trim()) return;
+    return () => controller.abort();
+  }, [analysis, historyAttempt]);
+
+  async function searchHandle(value) {
+    const username = value.trim();
+    if (!username || searching) return;
+
+    setSearching(username);
+    setError("");
 
     try {
-
-      setLoading(true);
-
-      const [profileResponse, analyticsResponse] =
-        await Promise.all([
-          API.get(`/profile/${username}`),
-          API.get(`/analytics/${username}`)
-        ]);
-
-      setHandle(username);
-
-      setProfile(profileResponse.data);
-
-      setAnalytics(analyticsResponse.data);
-
+      const handle = encodeURIComponent(username);
+      const options = { timeout: 30000 };
+      const [profile, analytics] = await Promise.all([
+        API.get("/profile/" + handle, options),
+        API.get("/analytics/" + handle, options),
+      ]);
+      setAnalysis({ profile: profile.data, analytics: analytics.data });
+    } catch {
+      setError("Couldn’t load @" + username + ". Check the handle or try again.");
+    } finally {
+      setSearching("");
     }
-
-    catch (error) {
-
-      console.error(error);
-
-      setProfile(null);
-
-      setAnalytics(null);
-
-      alert("Unable to fetch Codeforces profile.");
-
-    }
-
-    finally {
-
-      setLoading(false);
-
-    }
-
   }
 
-  return (
+  const history = historyResult && historyResult.analysis === analysis && historyResult.attempt === historyAttempt
+    ? historyResult
+    : null;
 
+  return (
     <SearchContext.Provider
       value={{
-
-        handle,
-
-        profile,
-
-        analytics,
-
-        loading,
-
+        profile: analysis?.profile,
+        analytics: analysis?.analytics,
+        handle: analysis?.profile.handle,
+        loading: Boolean(searching),
+        searchError: error,
         searchHandle,
-
+        history,
+        retryHistory: () => setHistoryAttempt((attempt) => attempt + 1),
       }}
     >
-
       {children}
-
     </SearchContext.Provider>
-
   );
-
-}
-
-export function useSearch() {
-
-  return useContext(SearchContext);
-
 }
